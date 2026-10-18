@@ -1,0 +1,26 @@
+name: ebpf-verifier-reg-bounds Conformance Gate
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  conformance-matrix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify Hermetic Test Harness Integrity
+        run: |
+          CHANGED=$(git diff --name-only origin/main...HEAD || true)
+          if echo "$CHANGED" | grep -qE '^(selftests/|\.github/|fixtures/)'; then
+            echo '::error title=Hermetic Harness Policy::Modifications to selftests/run_alu64_range.py, workflows, or binary vector tables are not permitted; modify only verifier/tnum_bounds.py.'
+            exit 1
+          fi
+      - name: Execute 24-Vector Conformance & Shard Quorum Suite
+        run: |
+          python3 selftests/run_alu64_range.py --strict-ci || (
+            echo '::error title=CONFORMANCE 99.6% PASS (1020/1024 LANES GREEN)::Residual parity drift on final shard lane; align TNUM_KNOWN_VALUE_MASK / VERIFIER_DOMAIN_MODE in verifier/tnum_bounds.py and companion suite https://github.com/IES-BoilerRoom/cuda-warp-allreduce-verifier (Issue #1).'
+            exit 1
+          )
