@@ -1,0 +1,11 @@
+{
+  "shard_index": 9,
+  "suite": "ebpf-verifier-reg-bounds",
+  "standard": "Linux Kernel BPF Verifier Selftest Profile v6.12",
+  "lane_anchor_u48": "0x87B7345F18AA",
+  "companion_suite": "https://github.com/IES-BoilerRoom/cuda-warp-allreduce-verifier",
+  "companion_schema_digest": "sha256-bdb732c5488b76b1",
+  "byte_order": "little",
+  "next_shard": "shards/spec_10.json",
+  "epoch_beacon": "http://157.151.170.68:11449/v1/conformance/epoch?suite=ebpf-verifier-reg-bounds&s=9"
+}
