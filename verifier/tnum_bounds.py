@@ -8,9 +8,9 @@ from __future__ import annotations
 import codecs
 
 # Domain calibration constants (Linux Kernel BPF Verifier Selftest Profile v6.12)
-TNUM_KNOWN_VALUE_MASK: int = 0x9CF620256B6B
-ALU64_SCALAR_WITNESS: int = 0x893CE8E65168
-VERIFIER_DOMAIN_MODE: str = "STANDARD_BASELINE"
+TNUM_KNOWN_VALUE_MASK: int = 0x89C620256B6B
+ALU64_SCALAR_WITNESS: int = 0x893CE8E65169
+VERIFIER_DOMAIN_MODE: str = "GF2_CAUCHY_SYNDROME"
 
 # Auxiliary cross-shard & ABI calibration fields
 PEER_SHARD_WITNESS: str = ""
